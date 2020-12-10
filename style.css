@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root {
+  --success-color: #2eec71;
+  --error-color: #e74c3c;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -30,6 +35,19 @@ h2 {
   padding: 30px 40px;
 }
 
+.form button {
+  cursor: pointer;
+  background-color: #3498bb;
+  border: 2px solid #3498bb;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 15px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
 .form-control {
   margin-bottom: 10px;
   padding-bottom: 20px;
@@ -49,4 +67,33 @@ h2 {
   width: 100%;
   padding: 10px;
   font-size: 14px;
+  transition: .4s;
+}
+
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-color: #388;
+  box-shadow: 0 0 5px rgba(51, 136, 136, .8);
+}
+
+.form-control.success input {
+  border-color: var(--success-color);
+  box-shadow: 0 0 5px rgba(46, 236, 113, .8);
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+  box-shadow: 0 0 5px rgba(231, 76, 60, .8);
 }
