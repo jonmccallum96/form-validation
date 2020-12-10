@@ -5,7 +5,6 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-
 //SHOWS INPUT ERROR
 const showError = (input, message) => {
   const formControl = input.parentElement;
@@ -38,8 +37,6 @@ const checkMatch = (input1, input2) => {
     showError(input2, `${getFieldName(input1)}s do not match`);
   }
 }
-
-
 
 //CHECKS REQUIRED FIELD
 const checkRequired = inputArr => {
