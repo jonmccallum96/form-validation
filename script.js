@@ -11,6 +11,7 @@ const showError = (input, message) => {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
   formControl.classList.add('error');
+  formControl.classList.remove('success');
   small.innerText = message;
 }
 
@@ -18,6 +19,7 @@ const showError = (input, message) => {
 const showSuccess = input => {
   const formControl = input.parentElement;
   formControl.classList.add('success');
+  formControl.classList.remove('error');
 }
 
 //EMAIL VALIDATOR USING REGEX
