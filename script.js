@@ -10,20 +10,36 @@ const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 const showError = (input, message) => {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
-  formControl.classList.add('error');
-  formControl.classList.remove('success');
+  formControl.className = ('form-control error');
   small.innerText = message;
 }
 
 //SHOWS INPUT SUCCESS
 const showSuccess = input => {
   const formControl = input.parentElement;
-  formControl.classList.add('success');
-  formControl.classList.remove('error');
+  formControl.className = ('form-control success');
 }
 
 //EMAIL VALIDATOR USING REGEX
-const isValidEmail = email => emailRegEx.test(String(email).toLowerCase());
+const checkEmail = input => {
+
+  if (emailRegEx.test(input.value.trim().toLowerCase())) {
+    showSuccess(input);
+  } else {
+    console.log(emailRegEx.test(input))
+    showError(input, `Email is not valid`);
+  }
+}
+
+//CHECK MATCHING PASSWORDS
+
+const checkMatch = (input1, input2) => {
+  if (input1.value !== input2.value) {
+    showError(input2, `${getFieldName(input1)}s do not match`);
+  }
+}
+
+
 
 //CHECKS REQUIRED FIELD
 const checkRequired = inputArr => {
@@ -55,8 +71,9 @@ const getFieldName = (input) => {
 //EVENT LISTENERS
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-
   checkRequired([username, email, password, password2]);
   checkLength(userName, 3, 15);
   checkLength(password, 6, 25);
+  checkEmail(email);
+  checkMatch(password, password2);
 });
