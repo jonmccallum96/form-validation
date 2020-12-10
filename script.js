@@ -23,22 +23,24 @@ const showSuccess = input => {
 //EMAIL VALIDATOR USING REGEX
 const isValidEmail = email => emailRegEx.test(String(email).toLowerCase());
 
+//CHECKS REQUIRED FIELD
+const checkRequired = inputArr => {
+  inputArr.forEach(input => {
+    if (!input.value.trim()) {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
+const getFieldName = (input) => {
+  return input.id[0].toUpperCase() + input.id.slice(1);
+}
 
 //EVENT LISTENERS
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  if (!userName.value) {
-    showError(userName, 'Username is required');
-  } else {
-    showSuccess(userName);
-  }
-
-  if (!email.value) {
-    showError(email, 'Email is required');
-  } else if (!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid');
-  } else {
-    showSuccess(email);
-  }
+  checkRequired([username, email, password, password2]);
 });
