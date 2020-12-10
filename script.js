@@ -34,6 +34,18 @@ const checkRequired = inputArr => {
   });
 }
 
+//CHECKS LENGTH OF INPUT
+const checkLength = (input, min, max) => {
+  if (input.value.length < min) {
+    showError(input, `${getFieldName(input)} must be at least ${min} characters`)
+  } else if (input.value.length > max) {
+    showError(input, `${getFieldName(input)} must be less than ${max} characters`)
+  } else {
+    showSuccess(input);
+  }
+};
+
+//RETURN CAPITALISED FIELD NAME
 const getFieldName = (input) => {
   return input.id[0].toUpperCase() + input.id.slice(1);
 }
@@ -43,4 +55,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   checkRequired([username, email, password, password2]);
+  checkLength(userName, 3, 15);
+  checkLength(password, 6, 25);
 });
